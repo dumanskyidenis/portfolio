@@ -1,0 +1,2236 @@
+html {
+    scroll-behavior: smooth; /* Плавное возвращение наверх при клике на логотип */
+}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap');
+/* --- CSS Переменные для удобства --- */
+/* --- ПОДКЛЮЧАЕМ ГОТИЧЕСКИЙ, НО ЧИТАЕМЫЙ ШРИФТ PHILOSOPHER --- */
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap');
+:root {
+    --bg-color: #060608;
+    --card-bg: rgba(20, 20, 25, 0.6);
+    --text-main: #ffffff;
+    --text-muted: #8b8b99;
+    --accent-purple: #6a00ff;
+    --accent-blue: #00e1ff;
+    --border-color: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    width: 100%;
+    max-width: 1400px; /* Сделали сайт значительно шире для ПК */
+    padding: 0 40px;
+}
+
+.navbar {
+    width: 100%;
+    max-width: 1400px; /* Шапка теперь тоже широкая */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    margin-top: 10px;
+}
+
+/* --- ДИЗАЙНЕРСКИЙ ЛОГОТИП 'A' --- */
+.logo-placeholder {
+    width: 48px; /* Ширина нового логотипа, чтобы сохранить баланс */
+}
+
+/* --- ФИКСИРОВАННЫЙ ДИЗАЙНЕРСКИЙ ЛОГОТИП 'A' --- */
+/* --- ФИКСИРОВАННЫЙ ДИЗАЙНЕРСКИЙ ЛОГОТИП 'A' --- */
+.fixed-logo {
+    position: fixed; 
+    top: 30px;
+    
+    /* Жесткая привязка к левому краю экрана. 
+       Если нужно еще левее — ставь 10px или 5px. Если чуть правее — 20px */
+    left: 60px; 
+    
+    z-index: 9999; 
+    
+    width: 48px;
+    height: 48px;
+    background: rgba(15, 10, 25, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(80, 0, 160, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+    animation: logoEnter 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+}
+
+.logo-glow {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    /* Свечение внутри куба при наведении */
+    background: radial-gradient(circle at center, rgba(138, 43, 226, 0.7) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+/* Красивая и читаемая буква A */
+/* Красивая и читаемая буква A (Только строгий фиолетовый) */
+/* Красивая и читаемая буква A (Сдержанный и благородный фиолетовый) */
+/* Красивая и читаемая буква A (Сдержанный и благородный фиолетовый) */
+.logo-letter {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 32px; 
+    font-weight: 700;
+    
+    background: linear-gradient(135deg, rgb(137, 94, 186) 0%, #4d1277 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 4px rgba(75, 0, 130, 0.4));
+    
+    position: relative;
+    z-index: 2;
+    
+    /* ДОБАВЛЕНО: Базовый масштаб и аппаратное ускорение для самой буквы */
+    transform: scale(1) translateZ(0);
+    backface-visibility: hidden;
+    
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.4s ease;
+}
+
+/* Подготовка слоев для расслоения */
+.logo-letter::before,
+.logo-letter::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Полупрозрачный и тонкий контур 1 */
+.logo-letter::before {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(138, 43, 226, 0.5); /* 1px и прозрачность 50% */
+    z-index: -1;
+    filter: drop-shadow(0 0 3px rgba(138, 43, 226, 0.3));
+}
+
+/* Полупрозрачный и тонкий контур 2 */
+.logo-letter::after {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(75, 0, 130, 0.6); /* 1px и прозрачность 60% */
+    z-index: -2;
+    filter: drop-shadow(0 0 3px rgba(75, 0, 130, 0.3));
+}
+
+/* --- АНИМАЦИЯ ПРИ НАВЕДЕНИИ (Мягкий и тусклый глитч) --- */
+.fixed-logo:hover {
+    transform: translateY(-3px) scale(1.05); 
+    border-color: rgba(106, 0, 255, 0.3); /* Рамка стала тусклее */
+    box-shadow: 0 10px 20px rgba(50, 0, 120, 0.25), inset 0 0 10px rgba(75, 0, 130, 0.2);
+    background: rgba(15, 10, 20, 0.75);
+}
+
+.fixed-logo:hover .logo-glow {
+    opacity: 0.5; /* Внутреннее пятно светит вполсилы */
+}
+
+/* Сама буква вспыхивает аккуратно, без пересвета */
+.fixed-logo:hover .logo-letter {
+    transform: scale(1.05); 
+    filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.5));
+}
+
+.fixed-logo:hover .logo-letter::before {
+    opacity: 1;
+    transform: translate(-3px, -2px);
+}
+
+.fixed-logo:hover .logo-letter::after {
+    opacity: 1;
+    transform: translate(3px, 2px);
+}
+.nav-links {
+    display: flex;
+    gap: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-purple);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-cv {
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* --- HERO SECTION --- */
+/* --- HERO SECTION --- */
+/* --- HERO SECTION --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /* Чуть опустили весь блок вниз, чтобы он не казался прилипшим к верху */
+    margin-top: 25px; 
+    position: relative; 
+}
+
+.hero-image-wrapper {
+    width: 100%;
+    /* ИМЕННО ЭТА ЦИФРА ОТДАЛЯЕТ ЛОГОТИП (было 500px) */
+    max-width: 420px; 
+    margin: 0 auto 20px auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: smoothFade 1.2s ease-out forwards; 
+}
+
+.hero-main-img {
+    width: 100%;
+    height: auto; 
+    display: block;
+    border: none; 
+    border-radius: 0;
+    
+    /* --- НОВЫЕ СВОЙСТВА --- */
+    user-select: none; /* Запрещает выделение (синий экран) */
+    -webkit-user-select: none; /* Для поддержки браузеров на базе WebKit (Chrome, Safari) */
+    -webkit-user-drag: none; /* Запрещает перетаскивание картинки мышкой */
+    pointer-events: none; /* Делает картинку полностью "прозрачной" для кликов (курсор будет её игнорировать) */
+    
+    /* Оставляем анимацию свечения */
+    animation: neonPulse 4s ease-in-out infinite alternate;
+}
+
+
+.glowing-text {
+    font-size: 48px;
+    font-weight: 800;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-blue);
+    text-shadow: 0 0 15px rgba(0, 225, 255, 0.5);
+    letter-spacing: 2px;
+    z-index: 1;
+}
+
+
+/* --- КНОПКИ --- */
+
+/* --- КНОПКИ --- */
+.btn {
+    width: 170px; 
+    padding: 14px 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 12px; 
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+}
+
+/* 1. Главная кнопка (About Me) с постоянным переливанием */
+/* --- КНОПКИ --- */
+.btn {
+    width: 145px; /* Сделали кнопки изящнее и у́же (было 170px) */
+    padding: 12px 0; /* Немного уменьшили высоту (было 14px) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    
+    /* Утонченный и стильный типографический блок */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; /* Текст стал меньше и аккуратнее (было 13px) */
+    font-weight: 600; /* Убрали излишнюю жирность, теперь шрифт смотрится благороднее (было 700) */
+    letter-spacing: 1.2px; /* Чуть сблизили буквы, чтобы текст не разваливался */
+    
+    color: #ffffff; 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    position: relative; 
+    overflow: hidden; 
+    z-index: 1;
+}
+
+/* 1. Главная кнопка (About Me) */
+.btn-primary {
+    /* Более контрастный градиент со светлым неоновым бликом в центре */
+    background: linear-gradient(
+        90deg, 
+        #4a00b0 0%,   /* Насыщенный фиолетовый по краям */
+        #7e1ce3 30%,  /* Яркий переходный цвет */
+        #b868ff 50%,  /* Светлый лиловый блик (делает переливание заметным) */
+        #7e1ce3 70%, 
+        #4a00b0 100%
+    );
+    background-size: 200% auto;
+    box-shadow: 0 4px 15px rgba(74, 0, 176, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* СТАТИЧНАЯ АНИМАЦИЯ: Ускорили с 6s до 3.5s, чтобы переливание бросалось в глаза */
+    animation: btnStaticFlow 3.5s linear infinite;
+}
+
+/* Эффект при наведении для About Me */
+.btn-primary:hover {
+    transform: translateY(-3px);
+    
+    /* Делаем кнопку ярче с помощью фильтра и добавляем стеклянное свечение */
+    filter: brightness(1.25); 
+    box-shadow: 
+        0 10px 25px rgba(106, 0, 255, 0.5), 
+        inset 0 2px 10px rgba(255, 255, 255, 0.3);
+    
+    /* АНИМАЦИЯ ПРИ НАВЕДЕНИИ: Ускоряется и меняет направление (оживает) */
+    animation: btnHoverFlow 2s linear infinite; 
+}
+
+@keyframes btnStaticFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes btnHoverFlow {
+    0% { background-position: 200% center; }
+    100% { background-position: 0% center; } /* Движется в обратную сторону быстрее */
+}
+
+
+/* 2. Вторичная кнопка (Contact Me) */
+.btn-secondary {
+    /* Темный полупрозрачный фон */
+    background: rgba(15, 5, 25, 0.4); 
+    border: 1px solid rgba(106, 0, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+/* Создаем скрытый стеклянный блик (световой срез) для Contact Me */
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: -150%;
+    width: 150%; 
+    height: 100%;
+    
+    /* Тонкая белая линия света под наклоном */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: -1;
+}
+
+/* Эффект при наведении для Contact Me */
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    
+    /* Сделали фон заметно темнее и плотнее */
+    background: rgba(25, 5, 45, 0.85); 
+    border-color: rgba(106, 0, 255, 0.5); /* Рамку сделали чуть спокойнее */
+    
+    /* Свечение подогнали под новый темный фон */
+    box-shadow: 
+        0 8px 20px rgba(40, 0, 80, 0.6), 
+        inset 0 0 15px rgba(106, 0, 255, 0.2); /* Внутренний блик стал мягче */
+        
+    /* Легкое свечение самого текста */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* При наведении запускаем блик, чтобы он "пролетел" по кнопке слева направо */
+.btn-secondary:hover::before {
+    left: 150%;
+}
+
+/* --- СТАТИСТИКА --- */
+/* --- СТАТИСТИКА --- */
+/* --- СТАТИСТИКА --- */
+.stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Увеличили первый параметр (верхний отступ) с 60px до 110px */
+    margin: 80px auto 0 auto; 
+    
+    width: 100%;
+    max-width: 900px; 
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1; /* Идеальная центровка: все 3 колонки занимают строго равную ширину */
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 34px; /* Немного уменьшили текст (было 42px) */
+    font-weight: 700;
+    
+    /* Исключительно фиолетовый градиент: от темного к светлому и обратно */
+    background: linear-gradient(
+        to right, 
+        #3c0082 0%,   /* Глубокий темно-фиолетовый */
+        #8a2be2 30%,  /* Яркий фиолетовый */
+        #d896ff 50%,  /* Светлый неоново-лиловый блик */
+        #8a2be2 70%,  /* Яркий фиолетовый */
+        #3c0082 100%  /* Глубокий темно-фиолетовый */
+    );
+    background-size: 200% auto;
+    
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Оставляем стильную анимацию блика */
+    animation: textShimmer 4s linear infinite;
+}
+
+.stat-divider {
+    width: 2px;
+    height: 40px; 
+    background: linear-gradient(to bottom, transparent, rgba(138, 43, 226, 0.4), transparent);
+}
+
+/* --- СЕКЦИИ КОНТЕНТА (ПООЧЕРЕДНЫЕ) --- */
+.content-wrapper {
+    width: 100%;
+    max-width: 950px;
+    margin: 100px auto 120px auto; /* Сделали огромный отступ сверху (100px) и снизу (120px) */
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Увеличили расстояние между блоками About, Works, Contact */
+}
+
+.content-section {
+    width: 100%;
+    max-width: 950px; 
+    margin: 120px auto 0 auto; 
+    
+    /* --- ДОБАВЛЕНО: Невидимый отступ при якорном скролле --- */
+    scroll-margin-top: 120px; 
+    
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+/* Каскадное появление блоков друг за другом */
+#about { animation-delay: 0.8s; }
+#works { animation-delay: 1.0s; }
+#contact { animation-delay: 1.2s; }
+
+/* --- READ MORE АНИМАЦИЯ --- */
+.read-more-wrapper {
+    display: grid;
+    grid-template-rows: 0fr; /* Текст скрыт (высота 0) */
+    transition: grid-template-rows 0.4s ease-out, margin-top 0.4s ease-out;
+}
+
+.read-more-wrapper.expanded {
+    grid-template-rows: 1fr; /* Текст плавно раскрывается на свою высоту */
+    margin-top: 15px;
+}
+
+.read-more-content {
+    overflow: hidden; /* Обязательно для плавного скрытия контента */
+}
+
+.read-more-content p {
+    color: #b0b0c0;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    max-width: 600px;
+}
+
+/* Обновляем саму кнопку Read More */
+
+
+/* --- GLASS CARDS --- */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 50px; /* Увеличили внутренние отступы, текст больше не липнет к краям */
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.badge {
+    font-size: 10px;
+    color: var(--accent-purple);
+    letter-spacing: 2px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* --- ABOUT CARD --- */
+.about-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Более темный фиолетовый ободок при наведении */
+.about-card:hover {
+    border-color: rgba(75, 0, 130, 0.8); /* Глубокий темно-фиолетовый (Indigo) */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.6), 
+        0 0 30px rgba(75, 0, 130, 0.35), /* Приглушенное внешнее свечение */
+        inset 0 0 20px rgba(75, 0, 130, 0.15); /* Приглушенное внутреннее свечение */
+    transform: translateY(-5px);
+}
+
+.about-text p, .read-more-content p {
+    /* Применяем наш стильный готический шрифт */
+    font-family: 'Philosopher', sans-serif;
+    
+    font-size: 17px; /* Делаем чуть крупнее, так как шрифт очень утонченный */
+    font-weight: 400; 
+    line-height: 1.75; /* Сохраняем кинематографичный "воздух" между строками */
+    letter-spacing: 0.5px; /* Легкое расстояние между буквами для эстетики */
+    
+    color: #d8d8eb; 
+    margin-bottom: 20px; 
+    max-width: 600px;
+    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.read-more-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px; /* Уменьшили текст */
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text-main);
+    background: rgba(45, 0, 90, 0.3); /* Темный стартовый фон */
+    border: 1px solid rgba(75, 0, 130, 0.5);
+    padding: 8px 22px; /* Сделали саму кнопку меньше */
+    border-radius: 30px; 
+    margin-top: 15px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.read-more-btn:hover {
+    background: linear-gradient(90deg, #2d005a, #4b0082); /* Строгий темно-фиолетовый градиент */
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(75, 0, 130, 0.4); /* Тусклое свечение */
+    transform: translateY(-2px) scale(1.03); /* Менее агрессивное увеличение */
+}
+
+
+.neon-line {
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-purple));
+    box-shadow: 0 0 10px var(--accent-purple);
+}
+
+.neon-line.short {
+    width: 80px;
+}
+
+/* --- WORKS (ТАБЫ И ПЕРЕКЛЮЧАТЕЛЬ) --- */
+.works-header {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    
+    /* Слегка поднимаем весь блок вверх */
+    margin-top: -15px; 
+    /* Увеличиваем отступ снизу, чтобы отделить от видео */
+    margin-bottom: 60px; 
+}
+/* Стеклянный контейнер для кнопок */
+.works-tabs-nav {
+    display: flex;
+    background: rgba(20, 15, 30, 0.5); 
+    border: 1px solid rgba(106, 0, 255, 0.3); 
+    border-radius: 40px;
+    
+    /* Сделали контейнер тоньше (уменьшили внутренний отступ) */
+    padding: 4px; 
+    
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(106, 0, 255, 0.1); 
+}
+
+/* Сами кнопки табов */
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #8b8b99;
+    
+    /* Уменьшили высоту и ширину самих кнопок */
+    padding: 10px 28px; 
+    
+    border-radius: 35px;
+    font-family: 'Space Grotesk', sans-serif;
+    
+    /* Чуть уменьшили текст, чтобы смотрелось аккуратнее */
+    font-size: 11px; 
+    
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden; 
+}
+.tab-btn:hover { 
+    color: #ffffff; 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+}
+/* Активная вкладка */
+.tab-btn.active {
+    /* Живой переливающийся градиент */
+    background: linear-gradient(90deg, #4a00b0, #8a2be2, #b868ff, #8a2be2, #4a00b0);
+    background-size: 200% auto;
+    color: #ffffff;
+    box-shadow: 0 5px 20px rgba(138, 43, 226, 0.5); /* Плотное неоновое свечение */
+    transform: scale(1.02); /* Кнопка слегка "вырастает" вперед */
+    animation: tabGradientFlow 3s linear infinite; /* Запуск анимации градиента */
+}
+
+.tab-btn.active::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-25deg);
+    animation: tabShimmer 4s infinite 1s; /* Блик с паузой (пролетает раз в 4 сек) */
+}
+
+/* Скрытие неактивных вкладок */
+.works-tab-content {
+    display: none;
+    animation: fadeTab 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.works-tab-content.active { display: block; }
+
+@keyframes tabGradientFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes tabShimmer {
+    0% { left: -150%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* Скрытие неактивных вкладок */
+.works-tab-content {
+    display: none;
+    animation: fadeTab 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.works-tab-content.active { display: block; }
+
+@keyframes fadeTab {
+    0% { opacity: 0; transform: translateY(15px); filter: blur(5px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* --- СЕТКА ПРОЕКТОВ --- */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); /* Карточки стали гораздо шире */
+    gap: 20px;
+}
+
+/* Спец-сетка для Reels (более узкие колонки) */
+.reels-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.work-card {
+    padding: 15px;
+    position: relative;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    /* Убрали жесткую высоту (min-height), чтобы внизу не было черной пустоты */
+}
+
+.work-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(106, 0, 255, 0.5);
+}
+
+/* Карточка Reel (Делаем ее высокой, как экран телефона 9:16) */
+.reel-card {
+    min-height: 380px; 
+}
+
+/* --- ПУСТЫЕ ОКНА (PLACEHOLDERS) --- */
+.placeholder-card {
+    background: rgba(15, 10, 25, 0.2);
+    border: 1px dashed rgba(106, 0, 255, 0.3);
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.video-placeholder { min-height: 280px; }
+/* Пустое окно Shorts подстраивается под 9:16 */
+.reel-placeholder { min-height: 480px; }
+
+.placeholder-card:hover {
+    background: rgba(106, 0, 255, 0.05);
+    border-color: #8278f0;
+    box-shadow: inset 0 0 20px rgba(106, 0, 255, 0.1);
+}
+
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+}
+
+.placeholder-card:hover .placeholder-content { opacity: 1; }
+
+.plus-icon {
+    font-size: 32px;
+    font-weight: 300;
+    color: #b868ff;
+    margin-bottom: 10px;
+}
+
+.placeholder-content h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.placeholder-content p {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.work-number {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 8px;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.work-image {
+    height: 180px;
+    border-radius: 10px;
+    background-color: #1a1a24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: rgba(255,255,255,0.1);
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.work-footer {
+    display: flex;
+    flex-direction: column; /* Выстраиваем элементы колонкой */
+    justify-content: center;
+    align-items: center; /* Центрируем по горизонтали */
+    text-align: center;
+    margin-top: 15px; /* Аккуратный отступ вниз от плеера */
+}
+
+.work-footer h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.work-tags {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.work-link {
+    background: rgba(255,255,255,0.05);
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.work-link:hover {
+    background: var(--accent-purple);
+}
+
+/* --- CONTACT SECTION --- */
+.social-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.social-btn:hover {
+    background: rgba(106, 0, 255, 0.2);
+    border-color: var(--accent-purple);
+}
+
+/* --- АНИМАЦИИ --- */
+
+/* Сама логика плавной анимации появления */
+
+
+/* Применяем анимацию к разным элементам с задержкой, 
+   чтобы они появлялись по цепочке (каскадом) */
+
+
+
+
+
+
+.tabs-navigation {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+}
+
+.tabs-container {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+}
+
+/* --- АНИМАЦИИ --- */
+
+/* 1. Анимация появления картинки (с блюром и легким зумом) */
+@keyframes smoothFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+/* 2. Постоянное парение картинки в воздухе (вверх-вниз) */
+/* 2. Красивое переливание чисто фиолетового неона вокруг букв */
+/* 2. Медленное, тусклое темно-фиолетовое свечение */
+@keyframes neonPulse {
+    0% {
+        /* Базовый темный контур */
+        filter: drop-shadow(0 0 10px rgba(60, 0, 120, 0.5));
+    }
+    50% {
+        /* Свечение расширяется и становится плотнее. 
+           Используем насыщенный темно-фиолетовый (90, 0, 180), но без излишней яркости */
+        filter: drop-shadow(0 0 35px rgba(90, 0, 180, 0.7)) drop-shadow(0 0 15px rgba(60, 0, 120, 0.8));
+    }
+    100% {
+        /* Возврат к базовому контуру */
+        filter: drop-shadow(0 0 10px rgba(60, 0, 120, 0.5));
+    }
+}
+
+/* 3. Премиальное выплывание текста и интерфейса (с блюром) */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+/* Каскадная задержка (оставляем как было, просто проверяем) */
+.subtitle {
+    /* Меняем базовый шрифт на дизайнерский и технологичный */
+    font-family: 'Space Grotesk', sans-serif;
+    
+    /* Кинематографичный стиль: заглавные буквы и широкий интервал */
+    text-transform: uppercase;
+    letter-spacing: 4px; 
+    
+    font-size: 15px; 
+    font-weight: 540;
+    color: #b2b2c3; 
+    
+    /* --- ДОБАВИЛИ КИНЕМАТОГРАФИЧНЫЕ ТЕНИ --- */
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),         /* Темная тень для плотности текста */
+        0 0 15px rgba(106, 0, 255, 0.4);      /* Легкое и дорогое фиолетовое свечение вокруг */
+    
+    /* Оставляем старые настройки анимации и слоя */
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    
+    /* Увеличили отступ сверху с 30px до 55px (чтобы опустить кнопки) */
+    margin-top: 30px; 
+    
+    /* Добавили, чтобы вытащить кнопки поверх невидимых границ картинки */
+    position: relative;
+    z-index: 10;
+
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+
+
+.tabs-navigation {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+}
+
+.tabs-container {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+}
+
+.hero-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%; /* Делаем фон шире логотипа */
+    height: 160%;
+    background-image: url('image_02e8e4.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Прячем картинку ЗА логотип */
+    filter: blur(50px); /* Сильно размываем края, создавая туманное свечение */
+    opacity: 0.7; /* Делаем чуть прозрачным, чтобы не слепило */
+    border-radius: 50%; /* Убираем углы */
+    mix-blend-mode: screen; /* Режим наложения для красивого свечения на черном фоне */
+    animation: backgroundPulse 6s ease-in-out infinite alternate;
+}
+
+/* --- ПЛАВАЮЩИЕ ЗНАЧКИ ПРИЛОЖЕНИЙ --- */
+/* --- ПЛАВАЮЩИЕ ЗНАЧКИ ПРОГРАММ (ФОН) --- */
+/* --- ПЛАВАЮЩИЕ ЗНАЧКИ ПРОГРАММ (ФОН) --- */
+.floating-icon {
+    position: absolute;
+    background: #0f0f15; 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    box-shadow: 
+        inset 0 0 10px rgba(255, 255, 255, 0.05), 
+        0 20px 30px rgba(0, 0, 0, 0.8); 
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    z-index: 1; 
+    user-select: none;
+    pointer-events: none; 
+    
+    /* Блюр управляется переменной для анимации */
+    filter: blur(var(--b));
+    
+    /* Сложная анимация: красивый вылет из глубины, затем бесконечная левитация */
+    animation: 
+        iconAppear 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards var(--delay),
+        floatIcon calc(4s + var(--delay)) ease-in-out infinite alternate calc(1.5s + var(--delay));
+}
+
+/* --- ШИРОКОЕ РАСПРЕДЕЛЕНИЕ ИКОНОК ПО ВСЕМУ ЭКРАНУ --- */
+
+/* --- ШИРОКОЕ РАСПРЕДЕЛЕНИЕ 8 ОСНОВНЫХ ИКОНОК --- */
+
+/* Ближний план */
+.icon-pr { bottom: 15%; right: 12%; --rot: 20deg; --scl: 1.2; --delay: 0.5s; --b: 2px; color: #e983ff; width: 85px; height: 85px; font-size: 34px; }
+.icon-ps { top: 10%; left: 15%; --rot: -15deg; --scl: 1.1; --delay: 0s; --b: 3px; color: #31a8ff; width: 80px; height: 80px; font-size: 32px; }
+.icon-dv { top: 40%; right: 8%; --rot: -10deg; --scl: 1; --delay: 1.2s; --b: 4px; color: #ff5c5c; width: 75px; height: 75px; font-size: 28px; }
+.icon-ae { top: 20%; right: 25%; --rot: 15deg; --scl: 0.95; --delay: 0.7s; --b: 5px; color: #9999ff; width: 70px; height: 70px; font-size: 26px; }
+
+/* Средний и дальний план */
+.icon-ai { bottom: 20%; left: 22%; --rot: -25deg; --scl: 0.9; --delay: 0.3s; --b: 5px; color: #ff7c00; width: 65px; height: 65px; font-size: 24px; }
+.icon-c4d { bottom: 10%; left: 8%; --rot: 45deg; --scl: 0.8; --delay: 1.1s; --b: 7px; color: #00a8ff; width: 60px; height: 60px; font-size: 20px; }
+.icon-me { top: 25%; left: 5%; --rot: 30deg; --scl: 0.7; --delay: 0.9s; --b: 9px; color: #5cffb6; width: 50px; height: 50px; font-size: 18px; }
+.icon-lr { top: 5%; right: 35%; --rot: -35deg; --scl: 0.65; --delay: 1.5s; --b: 10px; color: #7cc3ff; width: 45px; height: 45px; font-size: 16px; }
+
+/* Анимация плавания значков вверх-вниз с легким покачиванием */
+@keyframes floatIcon {
+    0% { 
+        transform: translateY(0) rotate(var(--rot)) scale(var(--scl)); 
+    }
+    100% { 
+        transform: translateY(-20px) rotate(calc(var(--rot) + 5deg)) scale(var(--scl)); 
+    }
+}
+
+/* --- АБСТРАКТНЫЕ ФОНОВЫЕ СВЕЧЕНИЯ (AMBIENT GLOW) --- */
+.bg-shape {
+    position: fixed; /* Фиксируем на экране, чтобы при скролле они оставались на месте */
+    border-radius: 50%;
+    filter: blur(120px); /* Сильнейшее размытие превращает круг в дымчатое свечение */
+    z-index: -5; /* Прячем позади всего контента и значков */
+    pointer-events: none; /* Чтобы они не перекрывали клики по сайту */
+    /* Плавная анимация движения и пульсации */
+    animation: ambientPulse 12s ease-in-out infinite alternate;
+}
+
+/* Настраиваем каждое пятно отдельно (размер, позиция, оттенок фиолетового) */
+.shape-1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(70, 0, 150, 0.35); /* Классический фиолетовый */
+    top: -15%;
+    left: -10%;
+}
+
+.shape-2 {
+    width: 700px;
+    height: 700px;
+    background: rgba(35, 0, 80, 0.4); /* Очень глубокий темно-фиолетовый */
+    bottom: -20%;
+    right: -10%;
+    animation-delay: -4s; /* Сдвигаем анимацию, чтобы двигались вразнобой */
+}
+
+.shape-3 {
+    width: 400px;
+    height: 400px;
+    background: rgba(90, 0, 220, 0.25); /* Более яркий фиолетовый акцент */
+    top: 40%;
+    left: 55%;
+    animation-delay: -8s;
+}
+
+/* Медленное движение фоновых фиолетовых пятен */
+@keyframes ambientPulse {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.6;
+    }
+    100% {
+        /* Пятна чуть увеличиваются и плывут по диагонали */
+        transform: scale(1.3) translate(40px, -40px);
+        opacity: 0.9;
+    }
+}
+
+/* Переливание готического текста в темно-фиолетовых тонах */
+/* Анимация пробегающего градиентного блика по тексту */
+@keyframes textShimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes iconAppear {
+    0% { 
+        opacity: 0;
+        /* Вылетают из глубины (scale 0), смещены вниз и сильно размыты */
+        transform: translateY(60px) rotate(calc(var(--rot) - 30deg)) scale(0);
+        filter: blur(20px);
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rot)) scale(var(--scl));
+        filter: blur(var(--b));
+    }
+}
+
+
+/* --- АНИМАЦИИ ДЛЯ ДИЗАЙНЕРСКОГО ЭЛЕМЕНТА --- */
+@keyframes elementAppear {
+    0% { transform: scale(0) rotate(-90deg); opacity: 0; filter: blur(10px); }
+    100% { transform: scale(1) rotate(0); opacity: 1; filter: blur(0); }
+}
+
+@keyframes spinOuter {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spinInner {
+    0% { transform: rotate(360deg); } /* Крутится в обратную сторону */
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes pulseCore {
+    0% { transform: scale(0.8); opacity: 0.7; box-shadow: 0 0 10px #6a00ff; }
+    100% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 25px #8a2be2; }
+}
+
+/* --- АНИМАЦИЯ РОСПИСИ --- */
+/* --- АНИМАЦИЯ РОСПИСИ --- */
+/* --- АНИМАЦИЯ РОСПИСИ --- */
+.about-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5%; 
+    flex-shrink: 0;
+    
+    /* Добавляем позиционирование и фиксированный размер для красивой сетки */
+    position: relative; 
+    width: 350px; 
+    height: 180px; 
+}
+
+/* --- КИБЕР-ТЕТРАДЬ (СЕТКА В КЛЕТОЧКУ НА ФОНЕ) --- */
+.about-decoration::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    /* Явно указываем начальный масштаб */
+    transform: translate(-50%, -50%) scale(1); 
+    
+    width: 120%; 
+    height: 120%;
+    
+    background-image: 
+        linear-gradient(rgba(106, 0, 255, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(106, 0, 255, 0.25) 1px, transparent 1px);
+    background-size: 20px 20px; 
+    
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%);
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%);
+    z-index: 0; 
+    
+    /* --- ДОБАВЛЕНО: Плавная анимация расширения и сдвига --- */
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.signature-svg {
+    width: 280px; 
+    height: auto;
+    transform: translateX(15px);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    
+    /* Поднимаем роспись над тетрадью */
+    position: relative;
+    z-index: 2;
+    
+    /* Добавляем плотную тень снизу и легкое фиолетовое свечение вокруг */
+    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 10px rgba(106, 0, 255, 0.2));
+}
+
+/* УВЕЛИЧЕНИЕ РОСПИСИ ПРИ НАЖАТИИ READ MORE */
+/* УВЕЛИЧЕНИЕ РОСПИСИ ПРИ НАЖАТИИ READ MORE */
+.about-card.expanded-card .signature-svg {
+    /* Делаем увеличение чуть более аккуратным (было 380px) */
+    width: 340px; 
+    
+    /* Сдвигаем роспись немного ВПРАВО, чтобы она не прилипала к тексту */
+    transform: translateX(45px); 
+}
+
+/* УВЕЛИЧЕНИЕ СЕТКИ ПРИ НАЖАТИИ READ MORE */
+.about-card.expanded-card .about-decoration::before {
+    /* Увеличиваем сетку на 20% (scale 1.2) и сдвигаем её вправо вслед за росписью (+25px) */
+    transform: translate(calc(-50% + 25px), -50%) scale(1.2);
+}
+
+.sig-path {
+    stroke-dasharray: 575; 
+    stroke-dashoffset: 575;
+    
+    animation: drawSignature 4s ease-in-out infinite;
+}
+
+@keyframes drawSignature {
+    0% { stroke-dashoffset: 575; }
+    40% { stroke-dashoffset: 0; } 
+    60% { stroke-dashoffset: 0; } 
+    100% { stroke-dashoffset: 575; }
+}
+
+/* --- АНИМИРОВАННЫЙ РАЗДЕЛИТЕЛЬ --- */
+.section-divider {
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    
+    /* Сама линия: прозрачная по краям и фиолетовая в центре */
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.4), transparent);
+    
+    /* Идеально ровный отступ 60px вниз от цифр статистики */
+    margin: 60px auto 0 auto; 
+    
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+}
+
+/* Светящийся блик (комета), бегающий по линии */
+.section-divider::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -200px; /* Начинает движение за левым краем */
+    width: 200px;
+    height: 3px;
+    
+    /* Яркий светлый неон в центре блика */
+    background: linear-gradient(90deg, transparent, rgba(105, 29, 148, 0.9), transparent);
+    filter: blur(2px);
+    
+    /* Анимация пролета с паузой */
+    animation: lineComet 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes lineComet {
+    0% { transform: translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    40% { transform: translateX(1000px); opacity: 0; }
+    100% { transform: translateX(1000px); opacity: 0; } /* Длинная пауза перед следующим пролетом */
+}
+
+/* --- ВАЖНО: Корректируем отступ для карточки About Me --- */
+/* Чтобы линия была ровно посередине между статами и About, 
+   подтягиваем карточку чуть выше */
+/* --- ВАЖНО: Корректируем отступ для карточки About Me --- */
+/* --- ВАЖНО: Корректируем отступ для карточки About Me --- */
+#about {
+    margin-top: 60px; 
+    animation-delay: 0.9s;
+    
+    /* 1. Отступ для СВЕРНУТОЙ карточки (как мы и настраивали) */
+    scroll-margin-top: 180px; 
+}
+
+/* 2. Отступ для РАЗВЕРНУТОЙ карточки (Срабатывает только когда нажат Read More) */
+#about:has(.expanded-card) {
+    /* Делаем отступ меньше. Браузер прокрутит страницу чуть ниже, 
+       оставляя меньше места сверху, чтобы весь длинный текст влез на экран */
+    scroll-margin-top: 130px; 
+}
+
+/* =========================================
+   SIDEBAR & HAMBURGER MENU
+========================================= */
+
+/* =========================================
+   SIDEBAR & HAMBURGER MENU
+========================================= */
+
+/* --- Анимированная кнопка-гамбургер (Теперь зафиксирована при скролле) --- */
+/* =========================================
+   SIDEBAR & HAMBURGER MENU (FINAL)
+========================================= */
+
+/* --- Анимированная кнопка-гамбургер --- */
+/* =========================================
+   SIDEBAR & HAMBURGER MENU
+========================================= */
+
+/* --- Анимированная кнопка-гамбургер --- */
+/* --- Анимированная кнопка-гамбургер --- */
+.menu-btn {
+    position: fixed; 
+    top: 44px;       
+    right: 60px;     
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;     
+    height: 18px;    
+    z-index: 10001;  
+    
+    /* ДОБАВЛЕНО: Плавная анимация для исчезновения и появления самой кнопки */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    opacity: 0;
+    animation: menuEnter 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.3s;
+}
+
+.menu-btn span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: #747272;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-left: auto; 
+}
+
+/* Статичное состояние: стильный каскад */
+.menu-btn span:nth-child(1) { width: 100%; }
+.menu-btn span:nth-child(2) { width: 65%; }
+.menu-btn span:nth-child(3) { width: 100%; }
+
+/* АНИМАЦИЯ НАВЕДЕНИЯ: Динамический "эквалайзер" (Оставляем как было) */
+.menu-btn:hover:not(.active) span:nth-child(1) {
+    width: 100%;
+    background: #7a39b2;
+}
+.menu-btn:hover:not(.active) span:nth-child(2) {
+    width: 80%;
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(184, 104, 255, 0.8);
+}
+.menu-btn:hover:not(.active) span:nth-child(3) {
+    width: 60%;
+    background: #7a39b2;
+}
+
+/* === ВМЕСТО КРЕСТИКА: Прячем гамбургер при открытии меню === */
+/* === ИСПРАВЛЕННОЕ ПЛАВНОЕ ИСЧЕЗНОВЕНИЕ КНОПКИ === */
+/* === ПЛАВНОЕ ИСЧЕЗНОВЕНИЕ КНОПКИ МЕНЮ === */
+.menu-btn.active {
+    opacity: 0 !important;
+    transform: translateX(15px) !important;
+    /* Убрали visibility: hidden, чтобы анимация успела проиграться */
+    pointer-events: none;
+}
+
+/* Анимация превращения в КРЕСТИК */
+/* Анимация превращения в КРЕСТИК (Спокойный и утонченный) */
+
+
+
+/* --- Боковая панель (Узкая и компактная) --- */
+/* --- Боковая панель --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -240px; 
+    width: 240px;  
+    height: auto; 
+    
+    background: rgba(12, 8, 20, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    border-left: 1px solid rgba(106, 0, 255, 0.15);
+    border-bottom: 1px solid rgba(106, 0, 255, 0.15);
+    border-bottom-left-radius: 20px; 
+    
+    z-index: 10000;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center; 
+    
+    /* ИЗМЕНЕНО: Уменьшили верхний отступ (было 95px, стало 60px), чтобы поднять вкладки */
+    padding: 60px 0 35px 0; 
+    
+    transition: right 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.open {
+    right: 0;
+}
+
+/* --- Затемнение остального сайта --- */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Стили вкладок (Отцентрированные и аккуратные) --- */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 18px; /* Увеличили расстояние между вкладками (было 12px) */
+    width: 100%;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 190px; 
+    
+    font-family: 'Space Grotesk', sans-serif;
+    /* УМЕНЬШИЛИ ШРИФТ И ИНТЕРВАЛ: */
+    font-size: 11px; 
+    letter-spacing: 1.2px; 
+    
+    font-weight: 600;
+    color: #b2b2c3;
+    text-transform: uppercase;
+    text-decoration: none;
+    
+    padding: 15px 0; 
+    border-radius: 10px; 
+    position: relative; 
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-link svg {
+    position: absolute; 
+    left: 20px; /* Немного отодвинули иконку от левого края рамки, чтобы дышалось легче */
+    width: 16px;
+    height: 16px;
+    stroke: #7a7a8c;
+    transition: all 0.4s ease;
+}
+
+/* НОВАЯ АНИМАЦИЯ: Вкладка "всплывает" вверх, а не съезжает вбок */
+.sidebar-link:hover {
+    background: rgba(106, 0, 255, 0.1);
+    border-color: rgba(106, 0, 255, 0.3);
+    transform: translateY(-3px); /* Мягкое поднятие */
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(106, 0, 255, 0.15); /* Объемная тень снизу */
+}
+
+.sidebar-link:hover svg {
+    stroke: #b868ff; 
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(184, 104, 255, 0.6));
+}
+
+/* Бегающая световая линия теперь растягивается ИЗ ЦЕНТРА */
+.sidebar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Центрируем изначальную точку */
+    width: 0%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #b868ff, transparent);
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sidebar-link:hover::after {
+    width: 80%; /* Линия красиво расширяется в обе стороны */
+}
+
+/* =========================================
+   ДЕКОРАЦИЯ ВНИЗУ ПАНЕЛИ (Эквалайзер)
+========================================= */
+/* =========================================
+   ДЕКОРАЦИЯ ВНИЗУ ПАНЕЛИ (Таймлайн монтажа)
+========================================= */
+/* =========================================
+   ДЕКОРАЦИЯ ВНИЗУ ПАНЕЛИ (Интерфейс записи / Таймкод)
+========================================= */
+.sidebar-decoration {
+    margin-top: 45px; /* Чуть отодвинули от вкладок */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.6; /* Слегка приглушенно, чтобы не забирать внимание с меню */
+    transition: opacity 0.4s ease;
+    cursor: default;
+}
+
+/* При наведении мышки элемент становится ярче */
+.sidebar-decoration:hover {
+    opacity: 1;
+}
+
+/* Блок REC */
+.camera-rec {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Пульсирующая точка записи */
+.rec-dot {
+    width: 8px;
+    height: 8px;
+    background: #ff2a5f; /* Свежий неоново-красный/розовый оттенок */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 42, 95, 0.6);
+    animation: recPulse 1.5s infinite;
+}
+
+/* Текст REC */
+.rec-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: #d8d8eb;
+}
+
+/* Таймкод в скобках */
+.camera-timecode {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+}
+
+/* Стилизация скобок под фокусные рамки камеры */
+.bracket {
+    color: #7e1ce3; /* Наш фирменный фиолетовый */
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+/* Сами цифры таймкода */
+.numbers {
+    color: #7a7a8c;
+    letter-spacing: 1.5px;
+    font-variant-numeric: tabular-nums; /* Делает цифры моноширинными, чтобы они смотрелись технично */
+}
+
+/* Анимация плавного мигания точки */
+@keyframes recPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* --- АНИМАЦИИ ПОЯВЛЕНИЯ ИНТЕРФЕЙСА --- */
+@keyframes logoEnter {
+    0% { opacity: 0; top: 10px; filter: blur(8px); }
+    100% { opacity: 1; top: 30px; filter: blur(0); }
+}
+
+@keyframes menuEnter {
+    0% { opacity: 0; top: 24px; filter: blur(8px); }
+    100% { opacity: 1; top: 44px; filter: blur(0); }
+}
+
+/* =========================================
+   SOCIAL MEDIA ФУТЕР
+/* =========================================
+   ПОЛНОЦЕННЫЙ ФУТЕР (SOCIAL MEDIA)
+========================================= */
+/* =========================================
+   ПОЛНОЦЕННЫЙ ФУТЕР (SOCIAL MEDIA)
+========================================= */
+.site-footer {
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(6, 6, 8, 0), rgba(12, 8, 20, 0.9));
+    
+    /* Делаем линию утонченной */
+    border-top: 1px solid rgba(106, 0, 255, 0.25);
+    
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Оставляем карточки поднятыми */
+    padding: 35px 40px 30px 40px;
+    margin-top: 80px;
+    
+    display: flex;
+    flex-direction: column; /* ИСПРАВЛЕНИЕ: Выстраиваем элементы друг под другом */
+    align-items: center;    /* ИСПРАВЛЕНИЕ: Центрируем их */
+    
+    position: relative;
+    z-index: 10;
+}
+
+/* Центрируем контент и делаем контейнер у́же, чтобы карточки не растягивались */
+.footer-content {
+    width: 100%;
+    max-width: 880px; /* ИСПРАВЛЕНО: Раздвинули контейнер, чтобы 4 кнопки не были зажаты (было 650px) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-header {
+    text-align: center;
+    margin-bottom: 35px; /* Прижали ближе к кнопкам (было 50px) */
+}
+
+.footer-header h2 {
+    font-family: 'Cinzel Decorative', serif; /* Тот самый уникальный готический шрифт */
+    font-size: 26px; /* Чуть крупнее, чтобы раскрыть красоту засечек */
+    font-weight: 700; 
+    margin-bottom: 25px; 
+    
+    /* Делаем широкий "кинематографичный" интервал */
+    letter-spacing: 6px; 
+    text-transform: uppercase;
+    
+    /* Наш глубокий темно-фиолетовый градиент */
+    background: linear-gradient(90deg, #4a00b0 0%, #8a2be2 50%, #4a00b0 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Мягкое фиолетовое свечение */
+    filter: drop-shadow(0 0 12px rgba(106, 0, 255, 0.5));
+    
+    animation: textShimmer 6s linear infinite; 
+}
+.footer-subtitle {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 16px; 
+    color: #b2b2c3;
+    letter-spacing: 1.5px;
+    opacity: 0.9;
+}
+
+/* Сетка кнопок */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* ИСПРАВЛЕНО: Теперь 4 колонки в ряд */
+    gap: 20px; /* ИСПРАВЛЕНО: Чуть больше расстояния между кнопками */
+    width: 100%;
+}
+
+/* Карточка отдельной соцсети (Премиум минимализм) */
+.social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 15, 28, 0.3); /* Очень легкий, почти прозрачный фон */
+    border: none;
+    border-radius: 12px;
+    padding: 25px 15px; /* Уменьшили высоту карточки */
+    
+    /* Увеличили время анимации до 0.6s для максимальной плавности */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease, box-shadow 0.6s ease;
+    position: relative;
+    text-decoration: none;
+    overflow: hidden; 
+}
+
+/* Скрытый стеклянный блик */
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: -150%;
+    width: 150%; 
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent); /* Блик стал мягче */
+    transform: skewX(-25deg);
+    z-index: 1; 
+    pointer-events: none;
+    
+    /* Плавный пролет блика */
+    transition: left 0.8s ease-in-out;
+}
+
+/* Иконка внутри карточки */
+.social-icon {
+    width: 44px; /* Чуть аккуратнее */
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.02); /* Почти невидимый кружок */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px; 
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease;
+    position: relative;
+    z-index: 2; 
+}
+
+.social-icon svg {
+    width: 20px; 
+    height: 20px;
+    color: #7a7a8c; /* Приглушенный цвет */
+    transition: all 0.6s ease;
+}
+
+/* Типографика названия соцсети */
+.social-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; /* Идеальный размер для минимализма */
+    font-weight: 600; /* Не слишком жирно */
+    color: #e5e5e5;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.6s ease;
+}
+
+/* --- ОБЩИЙ ЭФФЕКТ НАВЕДЕНИЯ (Дорогая плавность) --- */
+.social-card:hover {
+    transform: translateY(-4px); /* Очень легкое поднятие */
+    background: rgba(30, 22, 40, 0.5); /* Фон чуть темнеет */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Мягкая тень */
+}
+
+/* Запускаем пролет блика */
+.social-card:hover::before {
+    left: 150%;
+}
+
+/* Эффект для иконки при наведении */
+.social-card:hover .social-icon {
+    transform: scale(1.08); /* Плавное увеличение */
+    background: rgba(255, 255, 255, 0.05); 
+}
+
+.social-card:hover .social-icon svg {
+    color: #ffffff; 
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* Мягкое белое свечение */
+}
+
+.social-card:hover .social-name {
+    color: #ffffff; /* Текст становится ярко-белым */
+}
+
+
+
+
+/* Нижняя часть футера (Копирайт) */
+.footer-bottom {
+    width: 100%;
+    max-width: 1320px; /* Выравниваем по ширине шапки сайта */
+    margin: 40px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Нижняя часть футера (Копирайт и анимированная линия) */
+.footer-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.3), transparent);
+    margin-bottom: 20px;
+    
+    /* Позиционирование для анимации блика */
+    position: relative;
+}
+
+/* Светящийся блик (комета), бегающий по нижней линии */
+.footer-line::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -200px; /* Начинает движение за левым краем */
+    width: 200px;
+    height: 3px;
+    
+    /* Яркий светлый неон в центре блика */
+    background: linear-gradient(90deg, transparent, rgba(105, 29, 148, 0.9), transparent);
+    filter: blur(2px);
+    
+    /* Используем ту же анимацию lineComet, что и в разделителе секций */
+    animation: lineComet 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    
+    /* Небольшая задержка, чтобы верхняя и нижняя кометы летали вразнобой */
+    animation-delay: 2s; 
+}
+
+/* --- НОВЫЙ ДИЗАЙН НИЗА ФУТЕРА --- */
+.footer-bottom-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Распределяем идеально по краям */
+    align-items: center;
+    padding-top: 25px; /* Отступ вниз от анимированной линии */
+}
+
+/* Левая часть: Широкий стилизованный ник */
+/* Ліва частина: Стилізований логотип-нікнейм */
+.footer-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px; /* Трохи збільшуємо для виразності */
+    font-weight: 700; /* Робимо жирнішим, щоб градієнт виглядав соковито */
+    letter-spacing: 8px; /* Природна кінематографічна ширина замість розтягування */
+    text-transform: uppercase;
+    display: inline-block;
+    
+    /* Преміальний градієнт: від чистого білого до неоново-фіолетового */
+    background: linear-gradient(90deg, #ffffff 0%, #b868ff 50%, #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Легке світіння навколо літер */
+    filter: drop-shadow(0 0 10px rgba(184, 104, 255, 0.4));
+    
+    /* Анімація плавного переливання кольору (блик) */
+    animation: textShimmer 5s linear infinite;
+    cursor: default;
+}
+
+/* Центральная часть: Мелкий копирайт */
+.footer-center p {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400; /* Максимально тонкий текст */
+    color: #5c5c6b;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Подчеркивание имени автора */
+.footer-center p a {
+    font-weight: 500; /* Чуть ярче остального текста, но не жирно */
+    color: #d8d8eb;
+    text-decoration: underline;
+    /* Убрали подчеркивание полностью */
+    margin-left: 4px;
+}
+
+/* Правая часть: Кнопка Contact */
+/* Правая часть: Кнопка Contact */
+.footer-contact-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block; 
+    
+    /* Задаем базовый цвет через фон, чтобы подготовить текст к градиенту */
+    color: #e5e5e5;
+    background: #e5e5e5;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: #e5e5e5;
+    
+    /* Настраиваем плавную анимацию поднятия и появления свечения */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+}
+/* Эффект при наведении: смена цвета и плавное движение вверх */
+.footer-contact-btn:hover {
+    /* Добавляем красивый фиолетовый градиент (от глубокого к неоновому и обратно) */
+    background: linear-gradient(90deg, #8a2be2 0%, #e983ff 50%, #8a2be2 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Запускаем уже готовую анимацию бегущего блика */
+    animation: textShimmer 3s linear infinite;
+    
+    /* Мягкое неоновое свечение вокруг (filter работает с градиентами лучше, чем text-shadow) */
+    filter: drop-shadow(0 0 10px rgba(184, 104, 255, 0.6)); 
+    
+    /* Аккуратное поднятие на 4 пикселя */
+    transform: translateY(-4px); 
+}
+
+/* =========================================
+   ДЕКОРАЦИИ В ФУТЕРЕ (КИНЕМАТОГРАФИЧНЫЙ HUD)
+========================================= */
+/* =========================================
+   ДЕКОРАЦИИ В ФУТЕРЕ (УТОНЧЕННЫЙ СТИЛЬ)
+========================================= */
+/* =========================================
+   ДЕКОРАЦИИ В ФУТЕРЕ (УТОНЧЕННЫЙ СТИЛЬ)
+========================================= */
+.footer-decor-left, 
+.footer-decor-right {
+    position: absolute;
+    
+    /* Сдвигаем центр линий чуть выше, чтобы они идеально выровнялись по карточкам соцсетей */
+    top: calc(50% - 40px); 
+    
+    transform: translateY(-50%);
+    width: 80px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.3; 
+    transition: opacity 0.5s ease;
+    cursor: default; /* Обычный курсор */
+}
+/* Привязываем элементы к центру (с отступом 420px) */
+/* Привязываем элементы к центру и отодвигаем от 4-х кнопок */
+.footer-decor-left { left: calc(50% - 500px); }  /* Было 420px */
+.footer-decor-right { right: calc(50% - 500px); } /* Было 420px */
+
+/* При наведении на весь футер они мягко проявляются */
+.site-footer:hover .footer-decor-left,
+.site-footer:hover .footer-decor-right {
+    opacity: 0.8;
+}
+
+/* --- Линия рендера (Render Track) --- */
+.render-track {
+    width: 1px; 
+    height: 110px; 
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+/* Бегающий светящийся блик */
+.render-beam {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #8278f0, transparent);
+    animation: beamDrop 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transition: all 0.4s ease;
+}
+
+/* Сдвиг анимации для правой линии, чтобы блики падали вразнобой */
+.right-beam {
+    animation-delay: 2s; 
+}
+
+@keyframes beamDrop {
+    0% { top: -60px; }
+    100% { top: 110px; }
+}
+
+/* --- Интерактив (Hover) для обеих сторон --- */
+.footer-decor-left:hover .render-track,
+.footer-decor-right:hover .render-track {
+    background: rgba(130, 120, 240, 0.2);
+    box-shadow: 0 0 10px rgba(130, 120, 240, 0.3);
+}
+
+.footer-decor-left:hover .render-beam,
+.footer-decor-right:hover .render-beam {
+    background: linear-gradient(to bottom, transparent, #b868ff, transparent);
+    box-shadow: 0 0 15px #b868ff;
+    animation: beamDrop 1.5s linear infinite; /* Блик начинает бегать быстрее */
+}
+
+/* Скрываем на планшетах и мобилках, чтобы не создавать тесноту */
+@media (max-width: 1100px) {
+    .footer-decor-left, 
+    .footer-decor-right {
+        display: none;
+    }
+}
+
+
+
+
+
+/* =========================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ ФУТЕРА
+========================================= */
+/* =========================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ ФУТЕРА (КАСКАД)
+/* =========================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ ФУТЕРА (КАСКАД ЧЕРЕЗ KEYFRAMES)
+========================================= */
+/* Изначально прячем элементы */
+.site-footer .footer-header,
+.site-footer .social-card,
+.site-footer .footer-bottom,
+.site-footer .footer-decor-left, 
+.site-footer .footer-decor-right {
+    opacity: 0;
+}
+
+/* Кадры выплывания для контента */
+@keyframes footerFadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Кадры мягкого проявления декораций по бокам */
+@keyframes decorFadeIn {
+    0% { opacity: 0; transform: translateY(calc(-50% + 30px)); }
+    100% { opacity: 0.3; transform: translateY(-50%); }
+}
+
+/* Запускаем анимацию ТОЛЬКО когда JS добавит класс .visible */
+/* Forwards оставляет элемент видимым после конца анимации */
+.site-footer.visible .footer-header {
+    animation: footerFadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.1s;
+}
+.site-footer.visible .social-card:nth-child(1) {
+    animation: footerFadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.2s;
+}
+.site-footer.visible .social-card:nth-child(2) {
+    animation: footerFadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.3s;
+}
+.site-footer.visible .social-card:nth-child(3) {
+    animation: footerFadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.4s;
+}
+.site-footer.visible .social-card:nth-child(4) {
+    animation: footerFadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.5s;
+}
+.site-footer.visible .footer-bottom {
+    animation: footerFadeUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.7s;
+}
+
+.site-footer.visible .footer-decor-left, 
+.site-footer.visible .footer-decor-right {
+    animation: decorFadeIn 0.8s ease forwards 0.8s;
+}
+
+/* --- YOUTUBE ПЛЕЕР --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Жестко фиксируем идеальные кино-пропорции */
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1a1a24;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+
+.reel-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16; /* Пропорции экрана телефона */
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1a1a24;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.video-wrapper iframe,
+.reel-wrapper iframe,
+.video-wrapper video,
+.reel-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover; /* Делает так, чтобы видео заполняло окно без черных полос */
+    border-radius: 10px; /* Закругляет углы самого видео */
+    background: #000; /* Черный фон, пока видео подгружается */
+    outline: none; /* Убирает синюю рамку при клике в некоторых браузерах */
+}
+
+/* Кастомизация стандартного плеера (опционально, делает интерфейс чище) */
+video::-webkit-media-controls-panel {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+/* Возвращаем нормальный масштаб видео в полноэкранном режиме */
+video:fullscreen {
+    object-fit: contain !important;
+}
+
+/* Фиксы для разных браузеров (Safari, старый Chrome, Firefox) */
+video:-webkit-full-screen {
+    object-fit: contain !important;
+}
+video:-moz-full-screen {
+    object-fit: contain !important;
+}
+video:-ms-fullscreen {
+    object-fit: contain !important;
+}
+
+/* Стили для текста видео (как на примере) */
+.title-bold {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 550; /* Уменьшили жирность, теперь текст аккуратнее (было 700) */
+    font-size: 14px; /* Сделали текст меньше (было 16px) */
+    letter-spacing: 2px; /* Чуть увеличили расстояние между буквами для премиального вида */
+    color: #e5e5e5; /* Цвет чуть-чуть мягче чистого белого, чтобы не резало глаз */
+    
+    /* Настройки идеального тонкого подчеркивания */
+    text-decoration: underline; 
+    text-underline-offset: 6px; 
+    text-decoration-thickness: 1px; /* Сделали линию тоньше (было 2px) */
+    text-decoration-color: rgba(255, 255, 255, 0.4); /* Линия теперь полупрозрачная, выглядит дороже */
+}
+
+.title-light {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300; /* Самая тонкая версия шрифта */
+    font-size: 13px; /* Тот же размер, что и у жирной части */
+    letter-spacing: 2px; /* Тот же премиальный интервал */
+    color: #b6b6bc; /* Приглушенный серо-фиолетовый цвет */
+    margin-left: 6px; /* Немного отодвинули от первой части */
+}
+
+/* =========================================
+   ИДЕАЛЬНАЯ АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+========================================= */
+@media (max-width: 768px) {
+    /* 1. Глобальные отступы и шапка */
+    main, .navbar { padding: 0 20px; }
+    .content-wrapper { margin: 60px auto; gap: 60px; }
+    .content-section { margin: 80px auto 0 auto; scroll-margin-top: 100px; }
+    
+    /* Фиксированный логотип и бургер-меню */
+    .fixed-logo { left: 20px; top: 20px; width: 40px; height: 40px; }
+    .logo-letter { font-size: 24px; }
+    .menu-btn { right: 20px; top: 32px; }
+
+    /* 2. Главный экран (Hero) */
+    .hero { margin-top: 50px; }
+    .hero-image-wrapper { max-width: 260px; margin-bottom: 30px; }
+    .subtitle { font-size: 13px; letter-spacing: 2px; line-height: 1.5; padding: 0 10px; }
+    
+    .hero-buttons { 
+        flex-direction: column; 
+        width: 100%; 
+        gap: 15px; 
+        margin-top: 40px;
+    }
+    .btn { width: 100%; max-width: 280px; margin: 0 auto; }
+
+    /* 3. Очищаем фон от лишнего "мусора" на маленьком экране */
+    .icon-pr, .icon-lr, .icon-me, .icon-c4d { display: none; }
+    .icon-ps { left: 2%; top: 5%; transform: scale(0.7); }
+    .icon-ae { right: 2%; top: 15%; transform: scale(0.7); }
+    .icon-ai { bottom: 10%; left: 5%; transform: scale(0.7); }
+    .icon-dv { top: 30%; right: 5%; transform: scale(0.7); }
+
+    /* 4. Статистика (Адаптируем цифры) */
+    .stats { flex-wrap: wrap; gap: 20px 0; margin: 60px auto 0 auto; }
+    .stat-value { font-size: 26px; }
+    .stat-divider { height: 30px; }
+
+    /* 5. Карточки контента (Убираем огромные рамки) */
+    .glass-card { padding: 25px 20px; border-radius: 15px; }
+
+    /* 6. Секция About Me */
+    .about-card { flex-direction: column; text-align: center; }
+    .about-text p { font-size: 15px; margin-bottom: 15px; }
+    .read-more-btn { margin: 10px auto 20px auto; display: block; }
+    
+    /* Центрируем роспись */
+    .about-decoration { 
+        margin: 15px auto 0 auto; 
+        width: 100%; 
+        max-width: 280px; 
+        height: 120px; 
+    }
+    .signature-svg { width: 220px; transform: translateX(0); }
+    .about-card.expanded-card .signature-svg { width: 250px; transform: translateX(0); }
+    .about-card.expanded-card .about-decoration::before { transform: translate(-50%, -50%) scale(1.05); }
+
+    /* 7. Фикс Сетки Проектов (Убираем горизонтальный скролл!) */
+    .works-header { margin-bottom: 30px; }
+    .works-grid { grid-template-columns: 1fr; } /* Видео выстраиваются ровно друг под другом */
+    .reels-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .video-wrapper { border-radius: 8px; }
+
+    /* 8. Футер и Соцсети */
+    .site-footer { padding: 30px 20px 25px 20px; margin-top: 60px; }
+    .social-grid { grid-template-columns: 1fr; gap: 12px; } /* Соцсети в столбик */
+    .social-card { padding: 18px; flex-direction: row; justify-content: flex-start; gap: 20px; }
+    .social-icon { margin-bottom: 0; width: 38px; height: 38px; }
+    
+    .footer-bottom-content { 
+        flex-direction: column; 
+        gap: 25px; 
+        text-align: center; 
+        padding-top: 20px;
+    }
+    .footer-logo { transform-origin: center center; }
+}

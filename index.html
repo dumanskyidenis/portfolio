@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denys Dumanskyi | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+    <!-- Навигация (Header) -->
+    <!-- Навигация (Header) -->
+   <!-- ФИКСИРОВАННЫЙ ДИЗАЙНЕРСКИЙ ЛОГОТИП (Летает поверх сайта) -->
+    <a href="#" class="fixed-logo">
+        <div class="logo-glow"></div>
+        <!-- Возвращаем букву A -->
+        <span class="logo-letter" data-text="A">A</span>
+    </a>
+
+    <!-- Навигация (Header) -->
+    <header class="navbar">
+        <!-- Пустой блок-заглушка, чтобы сохранить отступы в шапке -->
+        <div class="logo-placeholder"></div>
+        
+        <!-- Вкладки из хедера убраны -->
+        <div class="nav-actions">
+            <button class="menu-btn" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <!-- Вкладка 1: About Me -->
+            <a href="#about" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>About Me</span>
+            </a>
+            
+            <!-- Вкладка 2: Works (Монитор) -->
+            <a href="#works" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span>Works</span>
+            </a>
+            
+            <!-- Вкладка 3: Social Media (Глобус) -->
+            <a href="#contact" class="sidebar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span>Social Media</span>
+            </a>
+        </nav>
+        <!-- Декоративный элемент внизу (Таймлайн монтажа) -->
+        <!-- Декоративный элемент внизу (Интерфейс камеры / Таймкод) -->
+        <!-- Декоративный элемент внизу (Интерфейс камеры / Таймкод) -->
+        <div class="sidebar-decoration">
+            <div class="camera-rec">
+                <span class="rec-dot"></span>
+                <span class="rec-text">REC</span>
+            </div>
+            <div class="camera-timecode">
+                <span class="bracket">[</span>
+                <span class="numbers">00:00:00:00</span>
+                <span class="bracket">]</span>
+            </div>
+        </div>
+    </aside>
+    <!-- Главный экран (Hero) -->
+    <main>
+        <section class="hero">
+            <!-- Плавающие значки на заднем фоне -->
+            <div class="floating-icon icon-ps">Ps</div>
+            <div class="floating-icon icon-pr">Pr</div>
+            <div class="floating-icon icon-ae">Ae</div>
+            <div class="floating-icon icon-ai">Ai</div>
+            <div class="floating-icon icon-me">Me</div>
+            <div class="floating-icon icon-dv">Dv</div>
+            <div class="floating-icon icon-lr">Lr</div>
+            <div class="floating-icon icon-c4d">C4D</div>
+
+            <div class="hero-image-wrapper">
+                <img src="image-removebg-preview.png" alt="Avjeux Logo" class="hero-main-img">
+            </div>
+            
+            <p class="subtitle">Digital Designer & Video Creator</p>
+            
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">ABOUT ME ↗</a>
+                <a href="https://t.me/avjeux" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">CONTACT ME ✉</a>
+            </div>
+        </section>
+
+        <!-- Статистика -->
+        <!-- Статистика -->
+        <section class="stats">
+            <div class="stat-item">
+                <span class="stat-label">AGE</span>
+                <!-- Оборачиваем цифру в span и задаем цель (data-target) -->
+                <span class="stat-value"><span class="counter" data-target="18">0</span></span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-label">PROJECTS</span>
+                <span class="stat-value"><span class="counter" data-target="5">0</span>+</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-label">EXPERIENCE</span>
+                <span class="stat-value"><span class="counter" data-target="2">0</span>+ YEARS</span>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Блок ABOUT ME -->
+
+        <!-- Блок ABOUT ME -->
+        <section class="content-section" id="about">
+            <div class="glass-card about-card">
+                <div class="about-text">
+                    <p>I'm a digital designer and video creator.<br>
+                    I enjoy turning ideas into cinematic, dynamic, and engaging visual stories.</p>
+                    
+                    <!-- Скрытый текст, который будет плавно выезжать -->
+                    <div class="read-more-wrapper" id="more-text-wrapper">
+                        <div class="read-more-content">
+                            <p>With a strong focus on motion graphics, color grading, and seamless transitions, I specialize in creating high-impact promotional videos, music videos, and social media content.</p>
+                            <p>My toolkit includes Adobe Premiere Pro, After Effects, DaVinci Resolve, and Cinema 4D. I'm always exploring new visual techniques to push the boundaries of digital storytelling.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="read-more-btn" onclick="toggleReadMore()" id="read-more-btn">READ MORE ↓</button>
+                </div>
+                <!-- Новый дизайнерский анимированный элемент вместо полосок -->
+                    <!-- Анимированная неоновая роспись -->
+                    <!-- Анимированная темно-фиолетовая роспись (Острые линии) -->
+                    <!-- Анимированная темно-фиолетовая роспись (Постоянная анимация) -->
+                    <!-- Анимированная темно-фиолетовая роспись (Градиент, без неона) -->
+                    <!-- Анимированная темно-фиолетовая роспись (Острые углы, точная отрисовка) -->
+                <div class="about-decoration">
+                    <svg class="signature-svg" viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="darkPurpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1f004d" />
+                                <stop offset="50%" stop-color="#450a96" />
+                                <stop offset="100%" stop-color="#140033" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Чистый и плавный зигзаг, где концы изначально сведены в острую точку -->
+                        <path class="sig-path" d="M 30 50 L 140 45 L 70 85 L 270 40 L 110 95" 
+                              stroke="url(#darkPurpleGradient)" stroke-width="4" 
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+        </section>
+
+        <!-- Блок WORKS -->
+        <section class="content-section" id="works">
+            <div class="works-header">
+                <!-- Убрали подпись SELECTED WORKS, выравниваем табы по правому краю -->
+                
+                <!-- Стеклянный переключатель табов -->
+                <div class="works-tabs-nav">
+                    <button class="tab-btn active" data-tab="tab-videos">VIDEOS</button>
+                    <button class="tab-btn" data-tab="tab-reels">REELS</button>
+                </div>
+            </div>
+            
+           <div class="works-tab-content active" id="tab-videos">
+    <div class="works-grid">
+        <!-- Проект 1 (Локальное видео) -->
+        <div class="glass-card work-card">
+            <div class="video-wrapper">
+                <!-- Укажи путь к своему видео в src="...". poster="..." — это картинка-превью -->
+                <video src="твое_видео_1.mp4" poster="картинка_превью_1.jpg" controls playsinline preload="metadata"></video>
+            </div>
+            <div class="work-footer">
+                <div>
+                    <h3>NIGHT DRIVE — EDIT</h3>
+                    <span class="work-tags">#video #edit</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Проект 2 (Локальное видео) -->
+        <div class="glass-card work-card">
+            <div class="video-wrapper">
+                <video src="твое_видео_2.mp4" poster="картинка_превью_2.jpg" controls playsinline preload="metadata"></video>
+            </div>
+            <div class="work-footer">
+                <div>
+                    <h3>DEAD CITY — SHORT FILM</h3>
+                    <span class="work-tags">#video #film</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- Вкладка 2: REELS (Вертикальные) -->
+            <!-- Вкладка 2: REELS (Вертикальные) -->
+            <div class="works-tab-content" id="tab-reels">
+    <div class="works-grid reels-grid">
+        <!-- Проект 1 (Вертикальное видео) -->
+        <div class="glass-card work-card">
+            <div class="reel-wrapper">
+                <!-- Для Reels нужно вертикальное видео (9:16) -->
+                <video src="Render.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video>
+            </div>
+            <div class="work-footer">
+        <h3>
+            <span class="title-bold">MYKHAILO KORIN</span>
+            <span class="title-light">- TARGET</span>
+        </h3>
+    </div>
+</div>
+
+        <!-- Пустое окно для будущего Reel -->
+        <div class="glass-card work-card placeholder-card reel-placeholder">
+            <div class="placeholder-content">
+                <span class="plus-icon">+</span>
+                <h3>NEW REEL</h3>
+                <p>Coming Soon</p>
+            </div>
+        </div>
+        
+        <!-- Еще одно пустое окно для Reel -->
+        <div class="glass-card work-card placeholder-card reel-placeholder">
+            <div class="placeholder-content">
+                <span class="plus-icon">+</span>
+                <h3>NEW REEL</h3>
+                <p>Coming Soon</p>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+
+    <!-- ПОЛНОЦЕННЫЙ ФУТЕР (SOCIAL MEDIA) -->
+    <footer class="site-footer" id="contact">
+
+        <!-- ПОЛНОЦЕННЫЙ ФУТЕР (SOCIAL MEDIA) -->
+    
+        
+        <!-- НОВОЕ: Кинематографичные декорации по бокам -->
+        <!-- НОВОЕ: Утонченные декорации (Симметричные линии Render Track) -->
+        <div class="footer-decor-left">
+            <div class="render-track">
+                <div class="render-beam"></div>
+            </div>
+        </div>
+
+        <div class="footer-decor-right">
+            <!-- Заменили ромб на такую же линию -->
+            <div class="render-track">
+                <!-- Добавили класс right-beam для сдвига анимации -->
+                <div class="render-beam right-beam"></div>
+            </div>
+        </div>
+        <!-- Конец декораций -->
+        <!-- Конец декораций -->
+
+            <!-- ... твой остальной код с кнопками ... -->
+        <div class="footer-content">
+           
+            
+            <div class="social-grid">
+    <!-- Кнопка Telegram -->
+    <a href="https://t.me/avjeuxnvss" target="_blank" rel="noopener noreferrer" class="social-card tg-card">
+        <div class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+        </div>
+        <span class="social-name">TELEGRAM</span>
+    </a>
+
+    <!-- Кнопка Instagram -->
+    <a href="https://instagram.com/твой_инст" target="_blank" rel="noopener noreferrer" class="social-card ig-card">
+        <div class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+        </div>
+        <span class="social-name">INSTAGRAM</span>
+    </a>
+
+    <!-- Кнопка Discord -->
+    <a href="discordapp.com/users/564867412240105484" target="_blank" rel="noopener noreferrer" class="social-card ds-card">
+    <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+        </svg>
+    </div>
+    <span class="social-name">DISCORD</span>
+</a>
+
+<!-- Кнопка TikTok -->
+<a href="https://tiktok.com/@твой_тикток" target="_blank" rel="noopener noreferrer" class="social-card tk-card">
+    <div class="social-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+        </svg>
+    </div>
+    <span class="social-name">TIKTOK</span>
+</a>
+</div>
+</div>
+            
+           <div class="footer-bottom">
+                <div class="footer-line"></div>
+                
+                <!-- Новый контейнер для распределения по 3 колонкам -->
+                <div class="footer-bottom-content">
+                    
+                    <!-- Слева: стилизованный ник -->
+                    <div class="footer-left">
+                        <span class="footer-logo">AVJEUX</span>
+                    </div>
+                    
+                    <!-- По центру: копирайт как на примере -->
+                    <div class="footer-center">
+                        <p>DEVELOPED BY <a href="https://t.me/empxir" target="_blank" rel="noopener noreferrer" class="footer-author-link">DENYS DUMANSKYI</a></p>
+                    </div>
+                    
+                    <!-- Справа: кнопка контактов в Телеграм -->
+                    <div class="footer-right">
+                        <a href="https://t.me/avjeux" target="_blank" class="footer-contact-btn">CONTACT →</a>
+                    </div>
+                    
+                </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
