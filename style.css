@@ -2156,3 +2156,113 @@ video:-ms-fullscreen {
     margin-left: 6px; /* Немного отодвинули от первой части */
 }
 
+/* =========================================
+   ИДЕАЛЬНАЯ АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+========================================= */
+@media (max-width: 768px) {
+    /* 1. Глобальные отступы и шапка */
+    main, .navbar { padding: 0 20px; }
+    .content-wrapper { margin: 60px auto; gap: 60px; }
+    .content-section { margin: 80px auto 0 auto; scroll-margin-top: 100px; }
+    
+    /* Фиксированный логотип и бургер-меню */
+    .fixed-logo { left: 20px; top: 20px; width: 40px; height: 40px; }
+    .logo-letter { font-size: 24px; }
+    .menu-btn { right: 20px; top: 32px; }
+
+    /* 2. Главный экран (Hero) */
+    /* 2. Главный экран (Hero) */
+    .hero { margin-top: 50px; }
+    .hero-image-wrapper { max-width: 260px; margin-bottom: 30px; }
+    .subtitle { font-size: 13px; letter-spacing: 2px; line-height: 1.5; padding: 0 10px; }
+    
+    .hero-buttons { 
+        flex-direction: column; 
+        width: 100%; 
+        gap: 16px; 
+        margin-top: 40px;
+    }
+
+    /* --- МОБИЛЬНАЯ СТИЛИЗАЦИЯ КНОПОК --- */
+    .btn { 
+        width: 100%; 
+        max-width: 280px; 
+        margin: 0 auto; 
+        padding: 16px 0; /* Делаем кнопки чуть выше для удобного тапа пальцем */
+        border-radius: 12px; /* Более мягкие, "айфоновские" углы */
+        font-size: 12px; 
+    }
+
+    /* Главная кнопка ABOUT ME */
+    .btn-primary {
+        /* На мобильном сразу включаем красивое объемное свечение */
+        box-shadow: 
+            0 8px 25px rgba(106, 0, 255, 0.4), 
+            inset 0 2px 10px rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Вторая кнопка CONTACT ME */
+    .btn-secondary {
+        /* Делаем ее более стеклянной и выделяем контуром */
+        background: rgba(20, 10, 35, 0.6); 
+        border: 1px solid rgba(138, 43, 226, 0.4); 
+        box-shadow: inset 0 0 15px rgba(106, 0, 255, 0.2); 
+    }
+
+    /* Эффект физического нажатия пальцем (заменяет hover на телефонах) */
+    .btn:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease; /* Резкое сжатие для ощущения клика */
+    }
+    /* 3. Очищаем фон от лишнего "мусора" на маленьком экране */
+    .icon-pr, .icon-lr, .icon-me, .icon-c4d { display: none; }
+    .icon-ps { left: 2%; top: 5%; transform: scale(0.7); }
+    .icon-ae { right: 2%; top: 15%; transform: scale(0.7); }
+    .icon-ai { bottom: 10%; left: 5%; transform: scale(0.7); }
+    .icon-dv { top: 30%; right: 5%; transform: scale(0.7); }
+
+    /* 4. Статистика (Адаптируем цифры) */
+    .stats { flex-wrap: wrap; gap: 20px 0; margin: 60px auto 0 auto; }
+    .stat-value { font-size: 26px; }
+    .stat-divider { height: 30px; }
+
+    /* 5. Карточки контента (Убираем огромные рамки) */
+    .glass-card { padding: 25px 20px; border-radius: 15px; }
+
+    /* 6. Секция About Me */
+    .about-card { flex-direction: column; text-align: center; }
+    .about-text p { font-size: 15px; margin-bottom: 15px; }
+    .read-more-btn { margin: 10px auto 20px auto; display: block; }
+    
+    /* Центрируем роспись */
+    .about-decoration { 
+        margin: 15px auto 0 auto; 
+        width: 100%; 
+        max-width: 280px; 
+        height: 120px; 
+    }
+    .signature-svg { width: 220px; transform: translateX(0); }
+    .about-card.expanded-card .signature-svg { width: 250px; transform: translateX(0); }
+    .about-card.expanded-card .about-decoration::before { transform: translate(-50%, -50%) scale(1.05); }
+
+    /* 7. Фикс Сетки Проектов (Убираем горизонтальный скролл!) */
+    .works-header { margin-bottom: 30px; }
+    .works-grid { grid-template-columns: 1fr; } /* Видео выстраиваются ровно друг под другом */
+    .reels-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .video-wrapper { border-radius: 8px; }
+
+    /* 8. Футер и Соцсети */
+    .site-footer { padding: 30px 20px 25px 20px; margin-top: 60px; }
+    .social-grid { grid-template-columns: 1fr; gap: 12px; } /* Соцсети в столбик */
+    .social-card { padding: 18px; flex-direction: row; justify-content: flex-start; gap: 20px; }
+    .social-icon { margin-bottom: 0; width: 38px; height: 38px; }
+    
+    .footer-bottom-content { 
+        flex-direction: column; 
+        gap: 25px; 
+        text-align: center; 
+        padding-top: 20px;
+    }
+    .footer-logo { transform-origin: center center; }
+}
