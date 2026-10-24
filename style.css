@@ -2223,8 +2223,8 @@ video:-ms-fullscreen {
     /* 8. Футер и Соцсети */
     .site-footer { padding: 30px 20px 25px 20px; margin-top: 60px; }
     .social-grid { grid-template-columns: 1fr; gap: 12px; } /* Соцсети в столбик */
-    .social-card { padding: 18px; flex-direction: row; justify-content: flex-start; gap: 20px; }
-    .social-icon { margin-bottom: 0; width: 38px; height: 38px; }
+    .social-card { padding: 18px; flex-direction: row; justify-content: center;  text-align: center; gap: 20px; }
+    .social-icon {  margin-bottom: 0; width: 38px; height: 38px; }
     
     .footer-bottom-content { 
         flex-direction: column; 
@@ -2233,4 +2233,49 @@ video:-ms-fullscreen {
         padding-top: 20px;
     }
     .footer-logo { transform-origin: center center; }
+}
+
+@media (max-width: 768px) {
+    .reels-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        align-items: start;
+    }
+
+    .reels-grid .work-card {
+        align-self: start;
+        padding: 10px;
+    }
+
+    .reel-placeholder {
+        min-height: 0;
+        aspect-ratio: 9 / 16;
+    }
+
+    .reel-wrapper {
+        margin-bottom: 10px;
+    }
+}
+
+/* Базово іконки сховані (десктоп не змінюється) */
+.btn-icon {
+    display: none;
+}
+
+.btn-arrow {
+    margin-left: 0.4em;
+}
+
+@media (max-width: 768px) {
+    .btn-icon {
+        display: block;
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        margin-right: 10px;
+    }
+
+    .btn-arrow {
+        display: none;
+    }
 }
